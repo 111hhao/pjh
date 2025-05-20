@@ -125,3 +125,15 @@ ls -a *
  起始目录：指定开始搜索的目录，默认为当前目录（.）
  选项：修改搜索行为的参数
  表达式：指定搜索条件
+第七关：
+1、所有权搜索 - 了解了如何根据文件的所有者和所属组搜索文件
+find / -user bandit7 -group bandit6 -size 33c：
+find：搜索文件的命令
+/：从根目录开始搜索（搜索整个文件系统）
+-user bandit7：指定文件所有者为bandit7
+-group bandit6：指定文件所属组为bandit6
+-size 33c：指定文件大小为33字节（c表示字节）
+2、权限错误处理 - 学习了如何在大量权限错误消息中找到有用信息
+使用2>/dev/null可以将错误消息重定向到"黑洞"，使输出更清晰：
+find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
+第八关：
