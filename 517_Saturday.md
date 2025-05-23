@@ -179,4 +179,39 @@ cat data.txt：显示data.txt文件的内容
 |：管道操作符，将cat命令的输出作为base64命令的输入
 base64 -d：使用Base64解码数据（-d选项表示解码）
 
-第12关
+第12关:
+ROT13加密 🔄
+ROT13（Rotate by 13 places）是一种简单的字母替换密码，它将字母表中的每个字母替换为其后的第13个字母。
+ROT13的特点：
+只对字母进行变换，数字和符号保持不变
+由于英文字母表有26个字母，所以应用ROT13两次会得到原始文本
+ROT13是一种非常简单的加密方式，主要用于隐藏文本，而不是真正的安全加密.
+tr命令 🔄
+Linux提供了tr命令用于转换或删除字符。它可以用于实现ROT13解码。
+tr 'A-Za-z' 'N-ZA-Mn-za-m'：将字母A-Z替换为N-ZA-M，将字母a-z替换为n-za-m
+这实际上是将每个字母向前或向后旋转13位，从而实现ROT13解码
+
+第13关：
+1、十六进制转储（Hexdump）📊
+十六进制转储是一种以十六进制格式显示二进制数据的方法。它通常用于查看无法直接显示的二进制文件内容。
+xxd -r data.txt > data1：
+xxd -r：将十六进制转储还原为二进制数据
+> data1：将输出重定向到文件data1
+2、file data1：确定文件data1的类型
+3、mv data1 data1.gz：将文件重命名为正确的扩展名
+4、Linux支持多种压缩和归档格式，每种格式都有对应的工具：
+gzip/gunzip：处理.gz文件
+bzip2/bunzip2：处理.bz2文件
+tar：处理.tar文件（归档，不压缩）
+xz/unxz：处理.xz文件
+gunzip data1.gz：解压缩gzip文件
+bunzip2 data1.bz2：解压缩bzip2文件
+tar -xf data1.tar：解压缩tar归档文件
+5、创建临时工作目录 📂
+由于我们需要创建多个文件，最好在/tmp目录下创建一个临时工作目录：
+mkdir /tmp/mybandit12
+cd /tmp/mybandit12
+6、. 复制数据文件到工作目录 📋
+cp ~/data.txt .
+
+
